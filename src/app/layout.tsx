@@ -31,7 +31,7 @@ export default function RootLayout({
               </div>
               <div className="h-full w-full overflow-hidden">
                 <div className="relative h-full w-full overflow-x-hidden overflow-y-scroll">
-                  <div className="vertical-scrollbar scrollbar-lg flex h-full w-full flex-col space-y-7 overflow-y-auto px-6 pt-8">
+                  <div className="vertical-scrollbar scrollbar-lg flex h-full w-full flex-col space-y-7 overflow-y-auto px-6 py-8">
                     {children}
                   </div>
                 </div>
