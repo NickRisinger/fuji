@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Sidebar from '~/components/SidebarMenu';
+import { Storage, Questions, Mail, Links, Ball, Plus } from '~/icons';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,13 +22,24 @@ export default function RootLayout({
       <body style={inter.style}>
         <div className="h-screen w-full overflow-hidden">
           <div className="relative flex h-screen w-full overflow-hidden">
-            <div className="fixed inset-y-0 z-20 flex h-full w-[280px] flex-shrink-0 flex-grow-0 flex-col bg-white duration-300 md:relative md:ml-0 lg:ml-0">
-              <Sidebar />
-            </div>
+            <Sidebar />
             <main className="relative flex h-full w-full flex-col overflow-hidden bg-[#F1F3F7]">
               <div className="z-[15]">
-                <div className="z-10 flex w-full items-center bg-white">
-                  header
+                <div className="z-10 flex w-full items-center justify-between bg-white px-6 py-3">
+                  <div className="">header</div>
+                  <div className="flex items-center">
+                    <div className="mr-6 flex items-center gap-x-6">
+                      <Link href="https://disk.yandex.ru/d/tKpzWq2XQxjJKQ">
+                        <Storage className="hover:text-[#3B82F6]" />
+                      </Link>
+                      <Questions className="hover:text-[#3B82F6]" />
+                      <Mail className="hover:text-[#3B82F6]" />
+                      <Links className="hover:text-[#3B82F6]" />
+                      <Ball className="hover:text-[#3B82F6]" />
+                      <Plus className="hover:text-[#3B82F6]" />
+                    </div>
+                    <div className="h-10 w-10 rounded-full border border-[#3B82F6]"></div>
+                  </div>
                 </div>
               </div>
               <div className="h-full w-full overflow-hidden">

@@ -1,5 +1,14 @@
+import ObjectCard from '~/components/ObjectCard';
+
 interface IObject {
   id: number;
+  title: string;
+  description: string;
+  price: number;
+  address: {
+    value: string;
+  };
+  createdAt: number;
 }
 
 async function getObjects() {
@@ -22,10 +31,7 @@ export default async function Objects() {
     <>
       <div className="flex flex-col gap-y-5">
         {objects.map((object) => (
-          <div key={object.id} className="flex gap-x-5 bg-white p-6">
-            <div className="h-[220px] w-[354px] rounded-2xl bg-[#F1F3F7]"></div>
-            {object.id}
-          </div>
+          <ObjectCard key={object.id} object={object} />
         ))}
       </div>
     </>
