@@ -1,4 +1,4 @@
-interface IObject {
+interface IObjectForm {
   id: number;
   title: string;
   description: string;
@@ -18,7 +18,7 @@ async function getObject(id: string) {
     },
   );
 
-  const data = (await res.json()) as unknown as IObject;
+  const data = (await res.json()) as unknown as IObjectForm;
 
   return data;
 }
@@ -29,12 +29,41 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <div className="">
       <div className="">Object: {params.id}</div>
-      <div className="">
-        <div className="">
-          <label htmlFor="title" className="flex flex-col">
-            <span>Заголовок</span>
-            <input id="title" type="text" />
-          </label>
+      <div className="flex gap-x-5">
+        <div className="flex flex-col">
+          <div className="">
+            <div className="">
+              <input type="text" placeholder="Заголовок" />
+              <input type="text" placeholder="Описание" />
+              <input type="text" placeholder="Адрес" />
+            </div>
+            <div className="flex gap-x-6">
+              <label htmlFor="">
+                <input type="checkbox" placeholder="Описание" />
+                <span>Эксклюзив</span>
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" placeholder="Описание" />
+                <span>Согласие на рекламу</span>
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" placeholder="Описание" />
+                <span>Сопровождение</span>
+              </label>
+            </div>
+          </div>
+          <hr />
+          <div className=""></div>
+          <hr />
+          <div className=""></div>
+          <hr />
+          <div className=""></div>
+          <hr />
+          <div className=""></div>
+          <hr />
+          <div className=""></div>
+          <hr />
+          <div className=""></div>
         </div>
         <div className=""></div>
       </div>

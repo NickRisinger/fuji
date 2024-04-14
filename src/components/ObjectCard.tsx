@@ -48,6 +48,7 @@ export default function ObjectCard({ object }: any) {
         <span>{object.price}</span>
         <span>{object.address.value}</span>
         <span>{object.description}</span>
+        <span>{object.id}</span>
       </div>
       <div className="flex flex-col justify-center gap-y-5">
         <div className="h-10 w-10 rounded-full bg-[#EAEDF1]"></div>

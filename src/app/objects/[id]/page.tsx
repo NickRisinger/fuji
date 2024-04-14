@@ -23,12 +23,16 @@ async function getObject(id: string) {
   return data;
 }
 
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
+  const object = await getObject(params.id);
+
   return (
     <div className="">
       <div className="">Object: {params.id}</div>
-      <div className=""></div>
-      <div className=""></div>
+      <div className="">
+        <pre>{JSON.stringify(object, null, 2)}</pre>
+      </div>
+      <div className="">Похожие объекты</div>
     </div>
   );
 }
