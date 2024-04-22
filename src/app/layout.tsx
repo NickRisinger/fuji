@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import './globals.css';
 import Sidebar from '~/components/SidebarMenu';
 import { Storage, Questions, Mail, Links, Ball, Plus } from '~/icons';
 import Link from 'next/link';
+import Script from 'next/script';
 
-const inter = Inter({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body style={inter.style}>
+      <body style={manrope.style}>
         <div className="h-screen w-full overflow-hidden">
           <div className="relative flex h-screen w-full overflow-hidden">
             <Sidebar />
@@ -52,6 +53,12 @@ export default function RootLayout({
             </main>
           </div>
         </div>
+
+        <Script
+          src={`/yandex?lang=ru_RU&apikey=dfdb4b36-0feb-4305-a54d-ec40caddfd5b`}
+          type="module"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

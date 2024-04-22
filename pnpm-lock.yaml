@@ -20,7 +20,7 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20
+    specifier: ^20.12.7
     version: 20.12.7
   '@types/react':
     specifier: ^18
@@ -28,6 +28,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18
     version: 18.2.24
+  '@yandex/ymaps3-types':
+    specifier: ^0.0.24
+    version: 0.0.24(@types/react-dom@18.2.24)(@types/react@18.2.75)
   autoprefixer:
     specifier: ^10.0.1
     version: 10.4.19(postcss@8.4.38)
@@ -393,6 +396,24 @@ packages:
 
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+    dev: true
+
+  /@yandex/ymaps3-types@0.0.24(@types/react-dom@18.2.24)(@types/react@18.2.75):
+    resolution: {integrity: sha512-siOipdtF9fIB4wr7jOjiS0aM9wJWbgviar7zy4sIFoWY9KBA3hcdQzObmjCU/lPHWYM6w2Y62yeIVgMdnCvBNw==}
+    peerDependencies:
+      '@types/react': 16-18
+      '@types/react-dom': 16-18
+      '@vue/runtime-core': '3'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      '@vue/runtime-core':
+        optional: true
+    dependencies:
+      '@types/react': 18.2.75
+      '@types/react-dom': 18.2.24
     dev: true
 
   /acorn-jsx@5.3.2(acorn@8.11.3):
