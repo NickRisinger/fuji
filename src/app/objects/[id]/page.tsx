@@ -41,11 +41,14 @@ interface IObject {
   contractTypeId: null;
 
   imgFiles: ImgFile[];
+
+  realtor: any;
+  contractors: any[];
 }
 
 async function getObject(id: string) {
   const res = await fetch(
-    `https://api.crm.staging.arbatdeport.life/v2/estate-object/${id}`,
+    `https://api.crm.staging.arbatdeport.life/v2/estate-object/${id}?expand=contractors,realtor`,
     {
       method: 'GET',
       headers: { 'X-Api-Key': 'IoOFarIAxjFRLgjJSYONgd6Y7gx50epd' },
@@ -55,6 +58,33 @@ async function getObject(id: string) {
   const data = (await res.json()) as unknown as IObject;
 
   return data;
+}
+
+function UserCard({
+  type,
+  name,
+  phone,
+  action,
+}: {
+  type: string;
+  name: string;
+  photo?: string;
+  phone?: string;
+  action?: any;
+}) {
+  return (
+    <div className="">
+      <div className=""></div>
+      <div className="">
+        <span className="">{type}</span>
+        <div className="">
+          <span className="">{name}</span>
+          <span className="">{phone}</span>
+        </div>
+        {action && action}
+      </div>
+    </div>
+  );
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -99,13 +129,50 @@ export default async function Page({ params }: { params: { id: string } }) {
             </div>
           </div>
           <div className="bg-[#ffffff] p-8">
-            <div className="h-[400px] ">
+            <div className="h-[400px]">
               <WrapperMap />
             </div>
           </div>
         </div>
         <div className="flex basis-1/3 flex-col gap-y-5">
-          <div className="h-10 bg-[#ffffff]"></div>
+          <div className="bg-[#ffffff] p-8">
+            <div className="flex gap-x-2">
+              <button className="">Действия</button>
+              <button className="">Покупатели: 20</button>
+              <button className="">Документы</button>
+            </div>
+            <div className="">
+              <div className="">
+                <span className="">{object.price}</span>
+                <span className="">{object.price}</span>
+              </div>
+              <div className="">
+                <span>{object.address.value}</span>
+                <button>На карте</button>
+              </div>
+            </div>
+            <hr />
+            <div className=""></div>
+            <hr />
+            <div className="">
+              <UserCard
+                type="Риелтор"
+                name={object.realtor.nameAndInitials}
+                phone={object.realtor.phone}
+              />
+            </div>
+            <hr />
+            <div className="">
+              {object.contractors.map((contractor) => (
+                <UserCard
+                  key={contractor.id}
+                  type="Продавец"
+                  name={contractor.name}
+                  phone={contractor.contractorPhones[0].phoneNumber}
+                />
+              ))}
+            </div>
+          </div>
           <div className="h-10 bg-[#ffffff]"></div>
           <div className="h-10 bg-[#ffffff]"></div>
           <div className="h-10 bg-[#ffffff]"></div>
