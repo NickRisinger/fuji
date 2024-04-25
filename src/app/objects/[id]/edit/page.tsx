@@ -25,7 +25,11 @@ async function getObject(id: string) {
   return data;
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function EditObjectPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const data = await getObject(params.id);
 
   return (

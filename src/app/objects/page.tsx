@@ -1,3 +1,4 @@
+import PageHeader from '~/components/PageHeader';
 import ObjectCard from '~/components/ObjectCard';
 
 interface IObject {
@@ -17,6 +18,7 @@ async function getObjects() {
     {
       method: 'POST',
       headers: { 'X-Api-Key': 'IoOFarIAxjFRLgjJSYONgd6Y7gx50epd' },
+      cache: 'no-store',
     },
   );
 
@@ -25,10 +27,12 @@ async function getObjects() {
   return data;
 }
 
-export default async function Objects() {
+export default async function ObjectsPage() {
   const objects = await getObjects();
   return (
     <>
+      <PageHeader title="test" />
+
       <div className="flex flex-col gap-y-5">
         {objects.map((object) => (
           <ObjectCard key={object.id} object={object} />

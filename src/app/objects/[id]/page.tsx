@@ -87,7 +87,11 @@ function UserCard({
   );
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function ObjectPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const object = await getObject(params.id);
 
   return (
