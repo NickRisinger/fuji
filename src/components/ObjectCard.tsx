@@ -1,4 +1,7 @@
+import Link from 'next/link';
 import { Suspense } from 'react';
+import ObjectActions from './ObjectActions';
+import Image from 'next/image';
 
 interface ITimeline {
   id: number;
@@ -40,11 +43,29 @@ async function Comment({ objectId }: { objectId: number }) {
 }
 
 export default function ObjectCard({ object }: any) {
+  const images: any[] = object.imgFiles
+    .filter((item) => item.file.isPublic)
+    .map((item) => ({ name: item.file.name, url: item.file.publicUrl }));
+
   return (
     <div key={object.id} className="flex gap-x-5 bg-white p-6">
-      <div className="h-[220px] w-[354px] shrink-0 rounded-2xl bg-[#F1F3F7]"></div>
+      <div className="h-[220px] w-[354px] shrink-0 rounded-2xl bg-[#F1F3F7]">
+        {images.length && (
+          <Image
+            className="h-full w-full object-contain"
+            src={images[0].url}
+            alt={object.title}
+            width={354}
+            height={220}
+            quality={100}
+            priority
+          />
+        )}
+      </div>
       <div className="flex flex-col">
-        <span>{object.title}</span>
+        <Link href={`/objects/${object.id}`} prefetch>
+          {object.title}
+        </Link>
         <span>{object.price}</span>
         <span>{object.address.value}</span>
         <span>{object.description}</span>
@@ -56,6 +77,7 @@ export default function ObjectCard({ object }: any) {
         <div className="h-10 w-10 rounded-full bg-[#EAEDF1]"></div>
       </div>
       <div className="flex flex-col gap-y-5">
+        <ObjectActions objectId={object.id} />
         <Suspense fallback={<div>Loading...</div>}>
           <Comment objectId={object.id} />
         </Suspense>
